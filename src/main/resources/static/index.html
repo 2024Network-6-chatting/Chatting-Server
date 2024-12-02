@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Chat</title>
+</head>
+<body>
+<h1>WebSocket Chat</h1>
+<script>
+        const socket = new WebSocket("ws://localhost:8080/chat");
+
+        socket.onopen = function(event) {
+            console.log("WebSocket 연결 성공");
+        };
+
+        socket.onmessage = function(event) {
+            console.log("메시지 수신:", event.data);
+        };
+
+        socket.onclose = function(event) {
+            console.log("WebSocket 연결 종료");
+        };
+
+        socket.onerror = function(error) {
+            console.error("WebSocket 오류:", error);
+        };
+    </script>
+</body>
+</html>
