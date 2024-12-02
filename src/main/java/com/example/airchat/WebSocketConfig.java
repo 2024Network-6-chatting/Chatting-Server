@@ -8,16 +8,21 @@ import org.springframework.web.socket.config.annotation.*;
 
 
 @Configuration
-@EnableWebSocket
-public class WebSocketConfig implements WebSocketConfigurer {
-    private final WebSocketHandler webSocketHandler;
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    public WebSocketConfig(WebSocketHandler webSocketHandler) {
-        this.webSocketHandler = webSocketHandler;
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        //메시지 구독 url (topic을 구독)
+        config.enableSimpleBroker("/sub");
+        //메시지 발행 url
+        config.setApplicationDestinationPrefixes("/pub");
     }
 
     @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSocketHandler, "/chat").setAllowedOrigins("*");
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/chat")
+                .setAllowedOriginPatterns("*");
     }
+
 }
