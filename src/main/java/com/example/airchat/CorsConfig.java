@@ -18,13 +18,13 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        // config.addAllowedOriginPattern("*");  // 모든 origin 허용
+        config.addAllowedOriginPattern("*");
         config.addAllowedOrigin("http://localhost:8080");
         config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedOrigin("http://localhost:3001");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
-        // source.registerCorsConfiguration("/chat", config);
         return new CorsFilter(source);
     }
 }
