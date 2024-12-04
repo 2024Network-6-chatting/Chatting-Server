@@ -28,7 +28,7 @@ public class ChatController {
             String content = (String) messageMap.get("content");
             boolean isEmergency = content.contains("긴급") || content.contains("SOS");
 
-            // isEmergency만 수정
+            // 변경된 isEmergency 반영
             messageMap.put("isEmergency", isEmergency);
 
             // 수정된 메시지 반환
