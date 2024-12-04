@@ -6,8 +6,10 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:3000")
 public class ChatController {
 
     // 클라이언트가 "/pub/chat"로 메시지를 보낼 때 호출됨
